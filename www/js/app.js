@@ -67,6 +67,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
+  .state('app.newRoom', {
+    url: "/newRoom",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/newRoom.html",
+        controller: 'NewRoomCtrl'
+      }
+    }
+  })
+
   .state('app.session', {
     url: "/sessions/:sessionId",
     views: {

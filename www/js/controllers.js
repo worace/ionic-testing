@@ -49,6 +49,8 @@ angular.module('starter.controllers', ['starter.services'])
   $scope.session = Session.get({sessionId: $stateParams.sessionId});
 })
 
+.controller('NewRoomCtrl', function($scope, $stateParams) {
+})
+
 .controller('SplashCtrl', function($scope, Session) {
-  $scope.sessions = Session.query();
 });
