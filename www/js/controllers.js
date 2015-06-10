@@ -49,14 +49,18 @@ angular.module('starter.controllers', ['starter.services'])
   $scope.session = Session.get({sessionId: $stateParams.sessionId});
 })
 
-.controller('NewRoomCtrl', function($scope, Room) {
+.controller('NewRoomCtrl', function($scope, Room, $location) {
   $scope.topics = [{"id":1,"prompt":"BuzzFeed's Top Hungry Academy Grads","created_at":"2015-06-03T01:06:13.977Z","updated_at":"2015-06-03T01:06:13.977Z"}];
   $scope.selectTopic = function(topic) {
-    console.log(topic);
     var room = new Room({topic_id: topic.id});
-    room.$save(function(room, headers) {
-      console.log("got back room: ", room);
-      console.log("got back headers: ", headers);
+    room.$save(function(data, headers) {
+      var room = data.room
+      if (room.active) {
+        console.log("we are active let's do shit ", room);
+        //need to go to room#invite
+      } else {
+        //need to go fill in q's (room/round populate)
+      }
     });
   };
 })
