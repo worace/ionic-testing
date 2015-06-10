@@ -50,6 +50,7 @@ angular.module('starter.controllers', ['starter.services'])
 })
 
 .controller('NewRoomCtrl', function($scope, $stateParams) {
+  $scope.topics = [{"name":"foo"},{"name":"bar"}];
 })
 
 .controller('SplashCtrl', function($scope, Session) {

@@ -3,3 +3,16 @@
     <h1>Make a New Room</h1>
   </ion-content>
 </ion-view>
+
+
+<ion-view view-title="New Room">
+  <ion-content>
+    <h1>Make a New Room</h1>
+  
+    <ion-list>
+      <ion-item ng-repeat="topic in topics" ng-click="pizza(topic.id)">
+        {{topic.name}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
