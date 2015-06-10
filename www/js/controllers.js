@@ -49,8 +49,16 @@ angular.module('starter.controllers', ['starter.services'])
   $scope.session = Session.get({sessionId: $stateParams.sessionId});
 })
 
-.controller('NewRoomCtrl', function($scope, $stateParams) {
-  $scope.topics = [{"name":"foo"},{"name":"bar"}];
+.controller('NewRoomCtrl', function($scope, Room) {
+  $scope.topics = [{"id":1,"prompt":"BuzzFeed's Top Hungry Academy Grads","created_at":"2015-06-03T01:06:13.977Z","updated_at":"2015-06-03T01:06:13.977Z"}];
+  $scope.selectTopic = function(topic) {
+    console.log(topic);
+    var room = new Room({topic_id: topic.id});
+    room.$save(function(room, headers) {
+      console.log("got back room: ", room);
+      console.log("got back headers: ", headers);
+    });
+  };
 })
 
 .controller('SplashCtrl', function($scope, Session) {
