@@ -77,6 +77,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
+  .state('app.roomInvites', {
+    url: "/rooms/:roomId/invite",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/roomInvites.html",
+        controller: 'RoomInvitesCtrl'
+      }
+    }
+  })
+
   .state('app.session', {
     url: "/sessions/:sessionId",
     views: {
@@ -87,5 +97,5 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/splash');
+  //$urlRouterProvider.otherwise('/app/splash');
 });

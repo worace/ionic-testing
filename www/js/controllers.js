@@ -49,6 +49,10 @@ angular.module('starter.controllers', ['starter.services'])
   $scope.session = Session.get({sessionId: $stateParams.sessionId});
 })
 
+.controller('RoomInvitesCtrl', function($scope, $stateParams) {
+  console.log("in invites");
+})
+
 .controller('NewRoomCtrl', function($scope, Room, $location) {
   $scope.topics = [{"id":1,"prompt":"BuzzFeed's Top Hungry Academy Grads","created_at":"2015-06-03T01:06:13.977Z","updated_at":"2015-06-03T01:06:13.977Z"}];
   $scope.selectTopic = function(topic) {
@@ -57,6 +61,7 @@ angular.module('starter.controllers', ['starter.services'])
       var room = data.room
       if (room.active) {
         console.log("we are active let's do shit ", room);
+        $location.path("/app/rooms/" + room.id + "/invite");
         //need to go to room#invite
       } else {
         //need to go fill in q's (room/round populate)
