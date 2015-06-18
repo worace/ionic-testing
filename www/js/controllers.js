@@ -48,9 +48,25 @@ angular.module('starter.controllers', ['starter.services'])
 .controller('SessionCtrl', function($scope, $stateParams, Session) {
   $scope.session = Session.get({sessionId: $stateParams.sessionId});
 })
-
-.controller('RoomInvitesCtrl', function($scope, $stateParams) {
-  console.log("in invites");
+.controller('RoomCtrl', function($scope, Room, RoundGuess, $stateParams) {
+  $scope.room = Room.get({roomId: $stateParams.roomSlug});
+  $scope.attemptGuess = function() {
+    var guess = new RoundGuess({ roundId: $scope.room.current_round.id, guess: this.guess });
+    var form = this;
+    guess.$save(function(data, headers) {
+      $scope.room = data.room;
+      $scope.message = data.message;
+      form.guess = "";
+    });
+  }
+})
+.controller('GuessesCtrl', function($scope,$stateParams) {
+  //access room id
+  console.log($stateParams);
+  $scope.attemptGuess = function() {
+    console.log($scope.guess);
+    console.log($scope.roundId);
+  }
 })
 
 .controller('NewRoomCtrl', function($scope, Room, $location) {
@@ -60,9 +76,7 @@ angular.module('starter.controllers', ['starter.services'])
     room.$save(function(data, headers) {
       var room = data.room
       if (room.active) {
-        console.log("we are active let's do shit ", room);
-        $location.path("/app/rooms/" + room.id + "/invite");
-        //need to go to room#invite
+        $location.path("/app/rooms/" + room.slug);
       } else {
         //need to go fill in q's (room/round populate)
       }

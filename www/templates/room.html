@@ -1,0 +1,23 @@
+<ion-view view-title="Room {{room.slug}}">
+  <ion-content>
+    <h1>Viewing Room {{room.id}}</h1>
+    <p ng-if="message">
+      {{message}}
+    </p>
+    <form ng-submit="attemptGuess()" id="guess-form" ng-if="room.current_round.active">
+      Enter text and hit enter:
+      <input type="text" ng-model="guess" name="guess" autocomplete="off"/>
+      <input type="submit" id="submit" value="Submit" />
+    </form>
+    <ion-item ng-repeat="answer in room.current_round.answers">
+      <div ng-if="answer.guessed">
+        {{answer.order}}
+        {{answer.body}}
+      </div>
+      <div ng-if="!answer.guessed">
+        <strong>{{answer.order}}</strong>
+        ??????
+      </div>
+    </ion-item>
+  </ion-content>
+</ion-view>

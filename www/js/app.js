@@ -76,13 +76,12 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   })
-
-  .state('app.roomInvites', {
-    url: "/rooms/:roomId/invite",
+  .state('app.roomShow', {
+    url: "/rooms/:roomSlug",
     views: {
       'menuContent': {
-        templateUrl: "templates/roomInvites.html",
-        controller: 'RoomInvitesCtrl'
+        templateUrl: "templates/room.html",
+        controller: 'RoomCtrl'
       }
     }
   })
