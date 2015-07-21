@@ -69,8 +69,8 @@ angular.module('starter.controllers', ['starter.services'])
   }
 })
 
-.controller('NewRoomCtrl', function($scope, Room, $location) {
-  $scope.topics = [{"id":1,"prompt":"BuzzFeed's Top Hungry Academy Grads","created_at":"2015-06-03T01:06:13.977Z","updated_at":"2015-06-03T01:06:13.977Z"}];
+.controller('NewRoomCtrl', function($scope, Room, Topic, $location) {
+  $scope.topics = Topic.query();
   $scope.selectTopic = function(topic) {
     var room = new Room({topic_id: topic.id});
     room.$save(function(data, headers) {

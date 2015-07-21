@@ -7,4 +7,7 @@ angular.module('starter.services', ['ngResource'])
 })
 .factory('RoundGuess', function($resource){
    return $resource('http://localhost:3000/rounds/:roundId/guesses.json?guess=:guess', {roundId:'@roundId', guess:'@guess'})
-});
+})
+.factory('Topic', function($resource){
+  return $resource('http://localhost:3000/topics/:topicId.json');
+})
