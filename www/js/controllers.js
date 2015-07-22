@@ -48,8 +48,9 @@ angular.module('starter.controllers', ['starter.services'])
 .controller('SessionCtrl', function($scope, $stateParams, Session) {
   $scope.session = Session.get({sessionId: $stateParams.sessionId});
 })
-.controller('RoomCtrl', function($scope, Room, RoundGuess, $stateParams) {
+.controller('RoomCtrl', function($scope, Room, RoundGuess, RecommendedTopic, $stateParams) {
   $scope.room = Room.get({roomId: $stateParams.roomSlug});
+  $scope.recommendedTopics = RecommendedTopic.query({roomId: $stateParams.roomSlug});
   $scope.attemptGuess = function() {
     var guess = new RoundGuess({ roundId: $scope.room.current_round.id, guess: this.guess });
     var form = this;
@@ -58,6 +59,10 @@ angular.module('starter.controllers', ['starter.services'])
       $scope.message = data.message;
       form.guess = "";
     });
+  }
+
+  $scope.newRoomTopic = function() {
+    alert('foo')
   }
 })
 .controller('GuessesCtrl', function($scope,$stateParams) {

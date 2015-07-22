@@ -4,11 +4,27 @@
     <p ng-if="message">
       {{message}}
     </p>
-    <form ng-submit="attemptGuess()" id="guess-form" ng-if="room.current_round.active">
-      Enter text and hit enter:
-      <input type="text" ng-model="guess" name="guess" autocomplete="off"/>
-      <input type="submit" id="submit" value="Submit" />
-    </form>
+    <div ng-switch on="room.current_round.active">
+    <div ng-switch-when=true>
+      <form ng-submit="attemptGuess()" id="guess-form" ng-if="room.current_round.active">
+        Enter text and hit enter:
+        <input type="text" ng-model="guess" name="guess" autocomplete="off"/>
+        <input type="submit" id="submit" value="Submit" />
+      </form>
+    </div>
+    <div ng-switch-default>
+      <h3>Choose another topic!</h3>
+      <ion-list>
+        <ion-item ng-repeat="topic in recommendedTopics" ng-click="newRoomTopic(topic)">
+        {{topic.prompt}}
+        </ion-item>
+      </ion-list>
+
+      <!--get dem topics-->
+    </div>
+</div>
+
+
     <ion-item ng-repeat="answer in room.current_round.answers">
       <div ng-if="answer.guessed">
         {{answer.order}}

@@ -11,3 +11,7 @@ angular.module('starter.services', ['ngResource'])
 .factory('Topic', function($resource){
   return $resource('http://localhost:3000/topics/:topicId.json');
 })
+
+.factory('RecommendedTopic', function($resource){
+  return $resource('http://localhost:3000/rooms/:roomId/recommended_topics/:recommendedTopicId.json', {roomId:'@roomId'});
+})
